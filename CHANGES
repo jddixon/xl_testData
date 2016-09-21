@@ -1,6 +1,10 @@
 dat/xl_test_data/CHANGES
 
+v0.1.0
+    2016-09-21
+        * sync README.md and index.md; add support files
 v0.0.1
     2016-09-20
         * initial release, without any test data
+
 

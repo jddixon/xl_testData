@@ -2,8 +2,8 @@
 
 ## Contents
 
-This project contains data used for testing software developed as part of 
-the 
+This project contains data used for testing software developed as part of
+the
 [XLattice](https://jddixon.github.io/xlattice)
 project.  Project software has been developed in a number of programming
 languages.
@@ -13,24 +13,24 @@ data in a public place: this project.
 Derivative data structures to be included are
 
 *   [NLHTrees](https://jddixon.github.io/nlhtree_py)
-*   [BuildLists](https://jddixon.github.io/buildLists)
+*   [BuildLists](https://jddixon.github.io/buildList)
 *   [MerkleTrees](https://jddixon.github.io/merkletree)
 
-These will shortly be supplemented by 
+These will shortly be supplemented by
     [SHA test vectors]()
     [Chunks](https://jddixon.github.io/xlattice/chunks.html)
 
 
 ** Directory Structure
 
-The key material here is 
+The key material here is
 
 * a directory tree `dataDir`
 * an RSA key used for making digital signatures
-* and then a number of subdirectories containing data structures derived 
+* and then a number of subdirectories containing data structures derived
     from `dataDir` using project software.
 
-`dataDir` consists of a 
+`dataDir` consists of a
 number of data files, at least one of which is empty, and a number of
 subdirectories, at least one of which is empty.  Where files are populated,
 the file consists of a random number of random bytes.
@@ -38,8 +38,8 @@ the file consists of a random number of random bytes.
     xl_test_data/
         README.md                   # this file
         treeData
-            binExample.1    
-                node                
+            binExample.1
+                node
                     skPriv          # PEM serialization of private RSA key
                 dataDir/
                     data1
@@ -91,7 +91,7 @@ digital signature over the earlier part of the document.  In this
 example, the RSA private key used in signing the document in
 contained in `node/skPriv`.
 
-`nlhTree/{1,2,3}/uDir/` contains the same set of files as under `dataDir/`, 
+`nlhTree/{1,2,3}/uDir/` contains the same set of files as under `dataDir/`,
 key, by the `SHA{1,2,3}` hash of the file, where `SHA2` means SHA256
 and `SHA3` means SHA3-256, the 256-bit version of **Keccak**.
 
@@ -102,13 +102,17 @@ The data under `binExample.1/` is sufficient to verify the correctness of
 the build list and the 1-to-1 relationship between the files under
 `binExample.1/datadir/` and those under `binExample.1/nlhTree/{1,2,3}/uDir/`
 
-For MerkleTrees, there are three serializations, indented lists 
-created using `SHA1`, `SHA2`, and `SHA3` under `1/`, `2/`, and `3/` 
-respectively; and also the value returned by `merkleize -x`, the hash value 
+For MerkleTrees, there are three serializations, indented lists
+created using `SHA1`, `SHA2`, and `SHA3` under `1/`, `2/`, and `3/`
+respectively; and also the value returned by `merkleize -x`, the hash value
 for the entire MerkleTree.
 
 ## Project Status
 
-A skeletal repository as yet containing no test data.  It is organized as 
+A skeletal repository as yet containing no test data.  It is organized as
 a Python project to ease project management.
 
+## On-line Documentation
+
+More information on the **xl_test_data** project can be found
+[here](https://jddixon.github.io/xl_test_data)
