@@ -1,6 +1,6 @@
 * LICENSE-CC-BY-4.0
 
-Copyright {0} Jim Dixon
+Copyright 2016-2016 Jim Dixon
 
 Licensed under the Creative Commons Attribute 4.0 International 
 license (the "License").  See 
