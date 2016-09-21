@@ -1,2 +1,6 @@
-py/xl_test_data/CHANGES
+dat/xl_test_data/CHANGES
+
+v0.0.1
+    2016-09-20
+        * initial release, without any test data
 

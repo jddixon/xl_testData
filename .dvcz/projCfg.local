@@ -1,0 +1,7 @@
+# dat/xl_test_data/.dvcz/projCfg.local
+#
+dir:pkg:xlTestData
+
+txt:std:LICENSE-CC-BY-4.0.md
+
+
