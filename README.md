@@ -12,28 +12,43 @@ data in a public place: this project.
 
 Derivative data structures to be included are
 
-*   [NLHTrees](https://jddixon.github.io/nlhtree_py)
-*   [BuildLists](https://jddixon.github.io/buildList)
-*   [MerkleTrees](https://jddixon.github.io/merkletree)
+* [NLHTrees](https://jddixon.github.io/nlhtree_py)
+* [BuildLists](https://jddixon.github.io/buildList)
+* [MerkleTrees](https://jddixon.github.io/merkletree)
 
 These will shortly be supplemented by
-    [SHA test vectors]()
-    [Chunks](https://jddixon.github.io/xlattice/chunks.html)
 
+* SHA test vectors
+* [Chunks](https://jddixon.github.io/xlattice/chunks.html)
 
-** Directory Structure
+Much of this data was derived using variants of the
+[Secure Hash Algorithm](https://en.wikipedia.org/wiki/Secure Hash Algorithm),
+a family of functions each of which can producing a cryptographically secure
+number of predetermined length from a document of arbitrary length.
+These hash functions are *secure* in the sense that they are irreversible:
+it is for all practical purposes impossible to identify which document a
+document corresponds to without doing a systematic serach of the candidates.
+
+In other wrods, an SHA hash is a fixed-length identifier guaranteed to be
+unique to a document.  We use three SHA functions: SHA1, which produces
+160-bit values; SHA2 (aka sha-256), which produces 256-bit values; and
+the 256-bit variant of SHA3.
+
+## Directory Structure
 
 The key material here is
 
-* a directory tree `dataDir`
 * an RSA key used for making digital signatures
+* a directory tree `dataDir`
 * and then a number of subdirectories containing data structures derived
     from `dataDir` using project software.
 
-`dataDir` consists of a
-number of data files, at least one of which is empty, and a number of
-subdirectories, at least one of which is empty.  Where files are populated,
-the file consists of a random number of random bytes.
+The data under `binExample.1/` is sufficient to verify the correctness of
+the BuildList and the 1-to-1 relationship between the files under
+`binExample.1/datadir/` and those under `binExample.1/nlhTree/{1,2,3}/uDir/`
+
+The notation '{1,2,3}' is an abbreviation for "each of the sequence
+of values 1, 2, and 3, taken in turn."
 
     xl_test_data/
         README.md                   # this file
@@ -45,9 +60,9 @@ the file consists of a random number of random bytes.
                     data1
                     subDir1/
                         data11
-                        data12      # empty
+                        data12      # empty file
                     data2
-                    subDir2/
+                    subDir2/        # empty directory
                     subDir3/
                         data31
                     subDir4/
@@ -73,13 +88,31 @@ the file consists of a random number of random bytes.
                         hex             # returned by merkleize -x
 
 
+### node
+
 `skPriv` is the RSA private key used to sign the `example.bld`
 build list.
+
+### dataDir
+
+As shown in the listing above,
+`dataDir` consists of a
+number of data files, at least one of which is empty, and a number of
+subdirectories, at least one of which is empty.  Where files are populated,
+the file consists of a random number of random bytes.
 
 The information under `dataDir/` is a small directory tree.
 The `data*` are data files containing quasi-random data.  Both the
 file length and the contents are random.  `data12` is an empty file.
 Subdirectory `subDir2` is an empty subdirectory.
+
+### nlhTree
+
+`nlhTree/{1,2,3}/uDir/` contains the same set of files as under `dataDir/`,
+key, by the `SHA{1,2,3}` hash of the file, where `SHA2` means SHA256
+and `SHA3` means SHA3-256, the 256-bit version of **Keccak**.
+
+### buildList
 
 `example.bld` is a build list for `dataDir`.  The build list contains
 the public part of the RSA key used to sign the list, its title,
@@ -91,16 +124,7 @@ digital signature over the earlier part of the document.  In this
 example, the RSA private key used in signing the document in
 contained in `node/skPriv`.
 
-`nlhTree/{1,2,3}/uDir/` contains the same set of files as under `dataDir/`,
-key, by the `SHA{1,2,3}` hash of the file, where `SHA2` means SHA256
-and `SHA3` means SHA3-256, the 256-bit version of **Keccak**.
-
-The notation '{1,2,3}' is an abbreviation for "each of the sequence
-of values 1, 2, and 3, taken in turn."
-
-The data under `binExample.1/` is sufficient to verify the correctness of
-the build list and the 1-to-1 relationship between the files under
-`binExample.1/datadir/` and those under `binExample.1/nlhTree/{1,2,3}/uDir/`
+### merkleTree
 
 For MerkleTrees, there are three serializations, indented lists
 created using `SHA1`, `SHA2`, and `SHA3` under `1/`, `2/`, and `3/`
@@ -111,6 +135,7 @@ for the entire MerkleTree.
 
 A skeletal repository as yet containing no test data.  It is organized as
 a Python project to ease project management.
+
 
 ## On-line Documentation
 
