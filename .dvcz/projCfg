@@ -8,6 +8,7 @@ versionDate:
 dir:std:ghpDoc
 dir:std:.dvcz
 dir:pkg:xlTestData
+dir:local:treeData
 :?files?:
 code:std:.dvcz/projCfg
 code:std:.dvcz/projCfg.local
@@ -28,5 +29,3 @@ bash:std:countem
 bash:std:installit
 bash:std:styleit
 bash:std:test.all
-dunno:local:.wrapped
-dunno:local:junk

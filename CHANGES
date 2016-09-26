@@ -1,5 +1,8 @@
 dat/xl_test_data/CHANGES
 
+v0.1.2
+    2016-09-25
+        * update project ephemera
 v0.1.1
     2016-09-23
         * populated with test data
@@ -9,6 +12,7 @@ v0.1.0
 v0.0.1
     2016-09-20
         * initial release, without any test data
+
 
 
 
