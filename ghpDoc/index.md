@@ -13,7 +13,7 @@ data in a public place: this project.
 Derivative data structures to be included are
 
 * [NLHTrees](https://jddixon.github.io/nlhtree_py)
-* [BuildLists](https://jddixon.github.io/buildList)
+* [BuildLists](https://jddixon.github.io/buildlist)
 * [MerkleTrees](https://jddixon.github.io/merkletree)
 
 These will shortly be supplemented by
@@ -69,23 +69,17 @@ of values 1, 2, and 3, taken in turn."
                         subDir41
                             subDir411
                                 data4111
-                nlhTree
-                    {1,2,3}         # three subdirectories: 1/, 2/, 3/
-                        example.nlh # serialization of NLHTree
+                sha{1,2,3}         # three subdirectories: sha1/,sha2/,sha3/
+                    example.nlh     # serialization of NLHTree
+                    example.bld     # serialized BuildList
+                    buildlist.hex   # BuildList.hash()
+                    example.merkle  # serialized merkletree
+                    merkle.hex      # returned by merkleize -x
+                    DIR{_FLAT,16x16,256x256}
                         uDir/
-                            00/
                             ...
-                            ff/
                             in/
                             tmp/
-                buildList
-                    {1,2,3}
-                        example.bld     # serialized BuildList
-                        hex             # BuildList.hash()
-                merkleTree
-                    {1,2,3}
-                        example.tree    # serialized
-                        hex             # returned by merkleize -x
 
 
 ### node
@@ -106,30 +100,57 @@ The `data*` are data files containing quasi-random data.  Both the
 file length and the contents are random.  `data12` is an empty file.
 Subdirectory `subDir2` is an empty subdirectory.
 
-### nlhTree
+### sha subdirectories
 
-`nlhTree/{1,2,3}/uDir/` contains the same set of files as under `dataDir/`,
-key, by the `SHA{1,2,3}` hash of the file, where `SHA2` means SHA256
+The information in these subdirectories is derived from that under
+**dataDir** using one of the three Secure Hash Algorithm (SHA) types
+supported, SHA1, SHA2, and SHA3, where `SHA2` means SHA256
 and `SHA3` means SHA3-256, the 256-bit version of **Keccak**.
 
-### buildList
+#### example.nlh
 
-`example.bld` is a build list for `dataDir`.  The build list contains
+This is the serialization of the NLHTree describing the data files
+under `dataDir`.
+
+#### example.bld and buildlist.hex
+
+`example.bld` is a BuildList for `dataDir`.  The BuildList contains
 the public part of the RSA key used to sign the list, its title,
 and a UTC timestamp, the time at which the list was signed.  The
 body of the list is an indented list of the files under `dataDir/`,
 with a line for each file, each line containing the SHA content
-hash of the document and its title.  The build list ends with a
+hash of the document and its title.  The BuildList ends with a
 digital signature over the earlier part of the document.  In this
 example, the RSA private key used in signing the document in
 contained in `node/skPriv`.
 
-### merkleTree
+`buildlist.hex` is the BuildList hash, a 40-character hexadecimal
+value unique to the BuildList.
 
-For MerkleTrees, there are three serializations, indented lists
-created using `SHA1`, `SHA2`, and `SHA3` under `1/`, `2/`, and `3/`
-respectively; and also the value returned by `merkleize -x`, the hash value
-for the entire MerkleTree.
+#### example.merkle and merkle.hex
+
+The MerkleTree is another data structure useful for describing
+directory structures.  `example.merkle` is the serialization of
+the MerkleTree for `dataDir/`.  `merkle.hex` is the single value
+specifying the whole tree in hexadecimal form.
+
+#### DIR_FLAT, DIR16x16, DIR256x256
+
+These are three different ways of organizing content-keyed directories.
+
+In the first, `DIR_FLAG`, all files are collected in one directory.
+This is suitable for small collections of data.
+
+In the second, `DIR16x16`, there are 16 subdirectories `0/` through `f/'
+and below each of these 16 further subdirectories, each named with a
+hexadecimal digit.  This gives us a total of 256 subdirectories, each
+of which contains data files whose content keys begin with the
+corresponding two hex digits.
+
+Under each of the three structural headings there is a content keyed
+data store, `uDir`.  Each of the nine different versions of `uDir`
+contains the same files as `dataDir` named by the corresponding
+content key.
 
 ## Project Status
 

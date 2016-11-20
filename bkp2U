@@ -4,7 +4,7 @@ if [ ! -z "${DEV_BASE// }" ]
 then
   cd $DEV_BASE/dat/xl_test_data
   
-  blListGen \
+  bl_listgen \
     -d ../xl_test_data \
     -1L  \
     -u $DVCZ_UDIR \
