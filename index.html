@@ -25,7 +25,7 @@ data in a public place: this project.</p>
 
 <ul>
 <li><a href="https://jddixon.github.io/nlhtree_py">NLHTrees</a></li>
-<li><a href="https://jddixon.github.io/buildList">BuildLists</a></li>
+<li><a href="https://jddixon.github.io/buildlist">BuildLists</a></li>
 <li><a href="https://jddixon.github.io/merkletree">MerkleTrees</a></li>
 </ul>
 
@@ -37,7 +37,7 @@ data in a public place: this project.</p>
 </ul>
 
 <p>Much of this data was derived using variants of the
-<a href="https://en.wikipedia.org/wiki/Secure Hash Algorithm">Secure Hash Algorithm</a>,
+<a href="https://en.wikipedia.org/wiki/Secure%20Hash%20Algorithm">Secure Hash Algorithm</a>,
 a family of functions each of which can producing a cryptographically secure
 number of predetermined length from a document of arbitrary length.
 These hash functions are <em>secure</em> in the sense that they are irreversible:
@@ -64,8 +64,8 @@ from <code>dataDir</code> using project software.</li>
 the BuildList and the 1-to-1 relationship between the files under
 <code>binExample.1/datadir/</code> and those under <code>binExample.1/nlhTree/{1,2,3}/uDir/</code></p>
 
-<p>The notation &lsquo;{1,2,3}&rsquo; is an abbreviation for &ldquo;each of the sequence
-of values 1, 2, and 3, taken in turn.&rdquo;</p>
+<p>The notation &#39;{1,2,3}&#39; is an abbreviation for &quot;each of the sequence
+of values 1, 2, and 3, taken in turn.&quot;</p>
 
 <pre><code>xl_test_data/
     README.md                   # this file
@@ -86,23 +86,17 @@ of values 1, 2, and 3, taken in turn.&rdquo;</p>
                     subDir41
                         subDir411
                             data4111
-            nlhTree
-                {1,2,3}         # three subdirectories: 1/, 2/, 3/
-                    example.nlh # serialization of NLHTree
+            sha{1,2,3}         # three subdirectories: sha1/,sha2/,sha3/
+                example.nlh     # serialization of NLHTree
+                example.bld     # serialized BuildList
+                buildlist.hex   # BuildList.hash()
+                example.merkle  # serialized merkletree
+                merkle.hex      # returned by merkleize -x
+                DIR{_FLAT,16x16,256x256}
                     uDir/
-                        00/
                         ...
-                        ff/
                         in/
                         tmp/
-            buildList
-                {1,2,3}
-                    example.bld     # serialized BuildList
-                    hex             # BuildList.hash()
-            merkleTree
-                {1,2,3}
-                    example.tree    # serialized
-                    hex             # returned by merkleize -x
 </code></pre>
 
 <h3>node</h3>
@@ -123,30 +117,57 @@ The <code>data*</code> are data files containing quasi-random data.  Both the
 file length and the contents are random.  <code>data12</code> is an empty file.
 Subdirectory <code>subDir2</code> is an empty subdirectory.</p>
 
-<h3>nlhTree</h3>
+<h3>sha subdirectories</h3>
 
-<p><code>nlhTree/{1,2,3}/uDir/</code> contains the same set of files as under <code>dataDir/</code>,
-key, by the <code>SHA{1,2,3}</code> hash of the file, where <code>SHA2</code> means SHA256
+<p>The information in these subdirectories is derived from that under
+<strong>dataDir</strong> using one of the three Secure Hash Algorithm (SHA) types
+supported, SHA1, SHA2, and SHA3, where <code>SHA2</code> means SHA256
 and <code>SHA3</code> means SHA3-256, the 256-bit version of <strong>Keccak</strong>.</p>
 
-<h3>buildList</h3>
+<h4>example.nlh</h4>
 
-<p><code>example.bld</code> is a build list for <code>dataDir</code>.  The build list contains
+<p>This is the serialization of the NLHTree describing the data files
+under <code>dataDir</code>.</p>
+
+<h4>example.bld and buildlist.hex</h4>
+
+<p><code>example.bld</code> is a BuildList for <code>dataDir</code>.  The BuildList contains
 the public part of the RSA key used to sign the list, its title,
 and a UTC timestamp, the time at which the list was signed.  The
 body of the list is an indented list of the files under <code>dataDir/</code>,
 with a line for each file, each line containing the SHA content
-hash of the document and its title.  The build list ends with a
+hash of the document and its title.  The BuildList ends with a
 digital signature over the earlier part of the document.  In this
 example, the RSA private key used in signing the document in
 contained in <code>node/skPriv</code>.</p>
 
-<h3>merkleTree</h3>
+<p><code>buildlist.hex</code> is the BuildList hash, a 40-character hexadecimal
+value unique to the BuildList.</p>
 
-<p>For MerkleTrees, there are three serializations, indented lists
-created using <code>SHA1</code>, <code>SHA2</code>, and <code>SHA3</code> under <code>1/</code>, <code>2/</code>, and <code>3/</code>
-respectively; and also the value returned by <code>merkleize -x</code>, the hash value
-for the entire MerkleTree.</p>
+<h4>example.merkle and merkle.hex</h4>
+
+<p>The MerkleTree is another data structure useful for describing
+directory structures.  <code>example.merkle</code> is the serialization of
+the MerkleTree for <code>dataDir/</code>.  <code>merkle.hex</code> is the single value
+specifying the whole tree in hexadecimal form.</p>
+
+<h4>DIR_FLAT, DIR16x16, DIR256x256</h4>
+
+<p>These are three different ways of organizing content-keyed directories.</p>
+
+<p>In the first, <code>DIR_FLAG</code>, all files are collected in one directory.
+This is suitable for small collections of data.</p>
+
+<p>In the second, <code>DIR16x16</code>, there are 16 subdirectories <code>0/</code> through `f/&#39;
+and below each of these 16 further subdirectories, each named with a
+hexadecimal digit.  This gives us a total of 256 subdirectories, each
+of which contains data files whose content keys begin with the
+corresponding two hex digits.</p>
+
+<p>Under each of the three structural headings there is a content keyed
+data store, <code>uDir</code>.  Each of the nine different versions of <code>uDir</code>
+contains the same files as <code>dataDir</code> named by the corresponding
+content key.</p>
 
 <h2>Project Status</h2>
 
