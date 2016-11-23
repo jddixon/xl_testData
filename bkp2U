@@ -2,10 +2,10 @@
 
 if [ ! -z "${DEV_BASE// }" ]
 then
-  cd $DEV_BASE/dat/xl_test_data
+  cd $DEV_BASE/dat/xl_testData
   
   bl_listgen \
-    -d ../xl_test_data \
+    -d ../xl_testData \
     -1L  \
     -u $DVCZ_UDIR \
     -X .ssh \

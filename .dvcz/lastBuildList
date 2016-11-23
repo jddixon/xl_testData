@@ -7,24 +7,24 @@ zPjEShF9rvcNa9XEy1dKpcDz9Szbm2SlxOgM83fDDGtOq4SSCSqndtxrOvXXPB57
 H1mJV/FmerbXRPm5ERJVNIxtLk7Gr2Ce45FVlWyJGMhpfVlKkkk+bRQ02OFfazJI
 GQIDAQAB
 -----END PUBLIC KEY-----
-xl_test_data v0.1.3
-2016-11-20 05:00:37
+xl_testData v0.2.0
+2016-11-23 20:29:29
 # BEGIN CONTENT #
-xl_test_data
+xl_testData
  .dvcz
-  builds 3a87594585967992ae459e822d3f4a05020fa35e
+  builds 40ae98c04c44e72c89e5aba70c99865214840397
   copyright 6794cf665112656267cf59917bdfc150e4c4b97c
-  lastBuildList 6a450c2e3f6023ff95a28ad0718fde67acd7bc98
+  lastBuildList 0976201f0c6a8353a9677c990d2bcc025716e584
   license bdb480de655aa6ec75ca058c849c4faf3c0f75b1
   projCfg ae841682f7adb1c803b4d7addf3bc975536f3462
   projCfg.local c9f623491d1647982836f3fbe66c550d42332bbf
-  version 0f05b049ea9c636eb84f965194312a1abb7682f1
+  version 24ad0169850390e82f50b181018a289d51ec2023
  .gitignore 577730dd364cfb092e790f7fea537f3c75e6c82e
- CHANGES 217c5d320da88cfe7993dd9436b383680c05ad36
+ CHANGES 2c4938075c861d8ffa3828f59463df2b324a866a
  LICENSE-CC-BY-4.0.md 0c395c6ef50315042c16519227fe239cd7f23ab0
  README.md fb4d94efdef18800e35819631628817d52009c9d
- TODO a9fe183ee978d14ea1cfa452131f55ac13f19305
- bkp2U e93b16c37eb864fd15d4c7b975b32a1ac25d43ad
+ TODO aaa0e9c84e7ff87f29f5c0de0ef829d4a4525cb4
+ bkp2U a30a1da3ec738ca4315dd7312cae6b5df60ca558
  ghpDoc
   index.md 9695c33304727eb0d9e96df5270fc5338b3c18ff
  treeData
@@ -94,7 +94,10 @@ xl_test_data
        cfb1c7d61e4d227d8d3479f334168fdab13caaa1 cfb1c7d61e4d227d8d3479f334168fdab13caaa1
        da39a3ee5e6b4b0d3255bfef95601890afd80709 da39a3ee5e6b4b0d3255bfef95601890afd80709
        in
-     example.bld 467be05abba2a2d99d542305303edb335a0b5488
+     example.bld 4e0370420f6a87d6054068216e9896e280c53ebe
+     example.merkle 90a1845874ec9f1d0dee5b086a8ca15d3aa9e6e9
+     example.nlh c83b807cc81a2eaac253b1ef0c0a93b4f6d36f56
+     merkle.hex 9c6272b893a5cdb00cfc0b75fc031679e566122c
     sha2
      DIR16x16
       uDir
@@ -146,7 +149,10 @@ xl_test_data
        e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 da39a3ee5e6b4b0d3255bfef95601890afd80709
        e8b7771c1af84731e456c34e217f322107a4a4eeb6fab02a10906c2d1c23ee60 29f7b150e6b57f1d5dc9ff8a052222878828e19e
        in
-     example.bld ba31b163c9f47e5d5c9f5f9d79f93f65d1ad2cfe
+     example.bld 959d94278c5944d81f78825f3d8dde8fa285fb18
+     example.merkle 0564edc233358c71a67e325a6e1ec971daa0d501
+     example.nlh 1f86bbd153773abe6709c78c158a78253666b89a
+     merkle.hex d0322441d482ab6c6f1f159c7d8590d0708d3bff
     sha3
      DIR16x16
       uDir
@@ -199,11 +205,14 @@ xl_test_data
        c085c09e1b0d2a215257637e16cb4e9ea8716a4089d4a66bb05b2633a98d6421 29f7b150e6b57f1d5dc9ff8a052222878828e19e
        e819ef9d16faffffc9779049968db658d3234c1a5b7f4531ce35f693af38c9e3 924984bbc3200b12b61ee5609ca3a0e8d7006ae9
        in
-     example.bld 462292d37e19d43ac584c3c489acc93ff846fc81
+     example.bld 04d09aebd5b83b2217898715de588a091e18a1e5
+     example.merkle 35bc2042363dbbe35566a07352917511b77d451f
+     example.nlh 298e1979e24abaf9e15996bc780aa8bbe8900c02
+     merkle.hex e88f34be849878626074ec067d57435b29748702
    node
     skPriv.pem adcb713457af12f9aa34593178f63f4797b4d060
  xlTestData
-  __init__.py a0308b5478a42c98e3b3f1d30bb723a5ce7067a2
+  __init__.py 25be8dc2ae2f5d64792a5e0a6821c8c4bd725295
 # END CONTENT #
 
-d9qn9efCOMMZ9u6El9jAMeJCqVtBI1aBdJNhrs8tnBRqFAo6QjUhqYqT79I9zttIEGL/jEYTOgXprD56X/oY4hiVAWslFSNz/XveCAheYAyDKd6VNXv9Ld+X9w+5HmI2eNxJFPuhm2/EAR65Chzw0O/AUbauMP5a1IwkVSyTfb42DSRKfuAqMi4CkRksuh75HR2Jinkfw2vpDxPjc/PMEgs0or4RJmpd8KLRmAk3QWW1HiQ5flfy0AuTqHRub0jICT2S4mGJK86/i4MjmmKrDziim3yg7yO6Nx1bT3VJ9dM8VXeSirg1QII3vtagELEB+x7G0Dy/jyeOo9vILrRbCQ==
+OzifUJl+hF8ylTNYb7FkD+FZUM8wDooyAH4DPo8z0ohHP4tjkn+04G7UmnxwXSM1fSYyG0bcb+TtbmdXTeOPjudPNa4qybvQp5eG60RKbXqLS/MSrbGyItfVpw8THipPIgAr/guhcynDKUkWlFCOhLeImIj8rCvd3epVU+wazRTewHTsEQ0IH5H3Vx1n2or+Adms9MUVql3dwc0Ebttx8qGYMyJiTYkScTgKt51yAWbMNjoDIWzcsfGNhEDr7aYs/Upevx4YPSUzsbT+zxB4x+nYnClquDp4Ui4xoDeoxRKByB4xo0lJRZpKnLeLVAZzTLNwfWB690W/ssiMG1+5RQ==
