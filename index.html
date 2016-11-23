@@ -1,1 +1,198 @@
-dummy index
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>xl_test_data</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/ghp.css" />
+</head>
+<body>
+<div class="content">
+<h1 class="libTop">xl_test_data</h1>
+
+<h2>Contents</h2>
+
+<p>This project contains data used for testing software developed as part of
+the
+<a href="https://jddixon.github.io/xlattice">XLattice</a>
+project.  Project software has been developed in a number of programming
+languages.
+To test interoperability it is convenient to have a common set of test
+data in a public place: this project.</p>
+
+<p>Derivative data structures to be included are</p>
+
+<ul>
+<li><a href="https://jddixon.github.io/nlhtree_py">NLHTrees</a></li>
+<li><a href="https://jddixon.github.io/buildlist">BuildLists</a></li>
+<li><a href="https://jddixon.github.io/merkletree">MerkleTrees</a></li>
+</ul>
+
+<p>These will shortly be supplemented by</p>
+
+<ul>
+<li>SHA test vectors</li>
+<li><a href="https://jddixon.github.io/xlattice/chunks.html">Chunks</a></li>
+</ul>
+
+<p>Much of this data was derived using variants of the
+<a href="https://en.wikipedia.org/wiki/Secure%20Hash%20Algorithm">Secure Hash Algorithm</a>,
+a family of functions each of which can producing a cryptographically secure
+number of predetermined length from a document of arbitrary length.
+These hash functions are <em>secure</em> in the sense that they are irreversible:
+it is for all practical purposes impossible to identify which document a
+document corresponds to without doing a systematic serach of the candidates.</p>
+
+<p>In other wrods, an SHA hash is a fixed-length identifier guaranteed to be
+unique to a document.  We use three SHA functions: SHA1, which produces
+160-bit values; SHA2 (aka sha-256), which produces 256-bit values; and
+the 256-bit variant of SHA3.</p>
+
+<h2>Directory Structure</h2>
+
+<p>The key material here is</p>
+
+<ul>
+<li>an RSA key used for making digital signatures</li>
+<li>a directory tree <code>dataDir</code></li>
+<li>and then a number of subdirectories containing data structures derived
+from <code>dataDir</code> using project software.</li>
+</ul>
+
+<p>The data under <code>binExample.1/</code> is sufficient to verify the correctness of
+the BuildList and the 1-to-1 relationship between the files under
+<code>binExample.1/datadir/</code> and those under <code>binExample.1/nlhTree/{1,2,3}/uDir/</code></p>
+
+<p>The notation &#39;{1,2,3}&#39; is an abbreviation for &quot;each of the sequence
+of values 1, 2, and 3, taken in turn.&quot;</p>
+
+<pre><code>xl_test_data/
+    README.md                   # this file
+    treeData
+        binExample.1
+            node
+                skPriv          # PEM serialization of private RSA key
+            dataDir/
+                data1
+                subDir1/
+                    data11
+                    data12      # empty file
+                data2
+                subDir2/        # empty directory
+                subDir3/
+                    data31
+                subDir4/
+                    subDir41
+                        subDir411
+                            data4111
+            sha{1,2,3}         # three subdirectories: sha1/,sha2/,sha3/
+                example.nlh     # serialization of NLHTree
+                example.bld     # serialized BuildList
+                buildlist.hex   # BuildList.hash()
+                example.merkle  # serialized merkletree
+                merkle.hex      # returned by merkleize -x
+                DIR{_FLAT,16x16,256x256}
+                    uDir/
+                        ...
+                        in/
+                        tmp/
+</code></pre>
+
+<h3>node</h3>
+
+<p><code>skPriv</code> is the RSA private key used to sign the <code>example.bld</code>
+build list.</p>
+
+<h3>dataDir</h3>
+
+<p>As shown in the listing above,
+<code>dataDir</code> consists of a
+number of data files, at least one of which is empty, and a number of
+subdirectories, at least one of which is empty.  Where files are populated,
+the file consists of a random number of random bytes.</p>
+
+<p>The information under <code>dataDir/</code> is a small directory tree.
+The <code>data*</code> are data files containing quasi-random data.  Both the
+file length and the contents are random.  <code>data12</code> is an empty file.
+Subdirectory <code>subDir2</code> is an empty subdirectory.</p>
+
+<h3>sha subdirectories</h3>
+
+<p>The information in these subdirectories is derived from that under
+<strong>dataDir</strong> using one of the three Secure Hash Algorithm (SHA) types
+supported, SHA1, SHA2, and SHA3, where <code>SHA2</code> means SHA256
+and <code>SHA3</code> means SHA3-256, the 256-bit version of <strong>Keccak</strong>.</p>
+
+<h4>example.nlh</h4>
+
+<p>This is the serialization of the NLHTree describing the data files
+under <code>dataDir</code>.</p>
+
+<h4>example.bld and buildlist.hex</h4>
+
+<p><code>example.bld</code> is a BuildList for <code>dataDir</code>.  The BuildList contains
+the public part of the RSA key used to sign the list, its title,
+and a UTC timestamp, the time at which the list was signed.  The
+body of the list is an indented list of the files under <code>dataDir/</code>,
+with a line for each file, each line containing the SHA content
+hash of the document and its title.  The BuildList ends with a
+digital signature over the earlier part of the document.  In this
+example, the RSA private key used in signing the document in
+contained in <code>node/skPriv</code>.</p>
+
+<p><code>buildlist.hex</code> is the BuildList hash, a 40-character hexadecimal
+value unique to the BuildList.</p>
+
+<h4>example.merkle and merkle.hex</h4>
+
+<p>The MerkleTree is another data structure useful for describing
+directory structures.  <code>example.merkle</code> is the serialization of
+the MerkleTree for <code>dataDir/</code>.  <code>merkle.hex</code> is the single value
+specifying the whole tree in hexadecimal form.</p>
+
+<h4>DIR_FLAT, DIR16x16, DIR256x256</h4>
+
+<p>These are three different ways of organizing content-keyed directories.</p>
+
+<p>In the first, <code>DIR_FLAG</code>, all files are collected in one directory.
+This is suitable for small collections of data.</p>
+
+<p>In the second, <code>DIR16x16</code>, there are 16 subdirectories <code>0/</code> through `f/&#39;
+and below each of these 16 further subdirectories, each named with a
+hexadecimal digit.  This gives us a total of 256 subdirectories, each
+of which contains data files whose content keys begin with the
+corresponding two hex digits.</p>
+
+<p>Under each of the three structural headings there is a content keyed
+data store, <code>uDir</code>.  Each of the nine different versions of <code>uDir</code>
+contains the same files as <code>dataDir</code> named by the corresponding
+content key.</p>
+
+<h2>Project Status</h2>
+
+<p>A skeletal repository as yet containing no test data.  It is organized as
+a Python project to ease project management.</p>
+
+<h2>Licensing</h2>
+<p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />The material on this github.io website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+  <div class="f">
+    <hr />
+    <div class="license">
+      <p><a href="LICENSE-CC-BY-4.0.html">SOFTWARE LICENSE</a></p>
+    </div>
+    <div class="project">
+      github <a href="https://github.com/jddixon/xl_test_data">      <img src="img/GitHub-Mark-32px.png" 
+        alt="link to project"  
+        style="display: inline-block; margin-left: 0 auto; margin-right: 0 auto">
+       </a> project
+    </div>
+    <div class="logo" >
+      <a href="https://jddixon.github.io/xlattice/">
+      <img src="img/xlattice-2014.jpg" alt="the XLattice Project" style="float: right;" >
+      </a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
