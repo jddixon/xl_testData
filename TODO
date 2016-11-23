@@ -2,4 +2,7 @@ dat/xl_test_data/TODO
 
 2016-11-19
     * README is somewhat out of sync with existing code
-     
+    * need serialized NLHTree
+    * need hash for BuildLists
+    * need MerkleTrees and a hash for each
+    * docs should make it clear that node/ and dataDir/ are immutable

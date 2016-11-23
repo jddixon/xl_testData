@@ -1,0 +1,13 @@
+dataDir
+ data1 3c182d475fd7c366f5fe73790048a24e2ff9f5f2
+ data2 35a2e2a034debf8b9df345451d360eb66b02ff3b
+ subDir1
+  data11 924984bbc3200b12b61ee5609ca3a0e8d7006ae9
+  data12 da39a3ee5e6b4b0d3255bfef95601890afd80709
+ subDir2
+ subDir3
+  data31 cfb1c7d61e4d227d8d3479f334168fdab13caaa1
+ subDir4
+  subDir41
+   subDir411
+    data31 29f7b150e6b57f1d5dc9ff8a052222878828e19e
