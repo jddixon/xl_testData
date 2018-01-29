@@ -1,8 +1,15 @@
 dat/xl_test_data/TODO
 
+2016-11-23
+    * {README,index}.md links to gh-pages need to be pushed to github
+    * there have been other edits to {README,index}.md that need to 
+        be pushed
+    * 
+
 2016-11-19
-    * README is somewhat out of sync with existing code
-    * need serialized NLHTree
-    * need hash for BuildLists
-    * need MerkleTrees and a hash for each
-    * docs should make it clear that node/ and dataDir/ are immutable
+    * README is somewhat out of sync with existing code                 * FIXED
+    * need serialized NLHTree                                           * DONE
+    * need hash for BuildLists                                          * DONE
+    * need MerkleTrees                                                  * DONE
+        - and a hash for each                                           * DONE
+    * docs should make it clear that node/ and dataDir/ are immutable   * DONE
