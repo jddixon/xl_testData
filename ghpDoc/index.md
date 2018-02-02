@@ -1,4 +1,4 @@
-<h1 class="libTop">xl_test_data</h1>
+<h1 class="libTop">xl_testData</h1>
 
 ## Contents
 
@@ -50,7 +50,7 @@ the BuildList and the 1-to-1 relationship between the files under
 The notation '{1,2,3}' is an abbreviation for "each of the sequence
 of values 1, 2, and 3, taken in turn."
 
-    xl_test_data/
+    xl_testData/
         README.md                   # this file
         treeData
             binExample.1

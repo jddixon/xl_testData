@@ -1,4 +1,4 @@
-# xl_test_data
+# xl_testData
 
 ## Contents
 
@@ -32,13 +32,13 @@ document corresponds to without doing a systematic serach of the candidates.
 In other wrods, an SHA hash is a fixed-length identifier guaranteed to be
 unique to a document.  We use three SHA functions: SHA1, which produces
 160-bit values; SHA2 (aka sha-256), which produces 256-bit values; and
-the 256-bit variant of SHA3.
+the 256-bit variant of SHA3 (Keccak).
 
 ## Directory Structure
 
-The key material here is
+The contents include
 
-* an RSA key used for making digital signatures
+* an RSA key used for making digital signatures, `node/skPriv`.
 * a directory tree `dataDir`
 * and then a number of subdirectories containing data structures derived
     from `dataDir` using project software.
@@ -50,11 +50,11 @@ the BuildList and the 1-to-1 relationship between the files under
 The notation '{1,2,3}' is an abbreviation for "each of the sequence
 of values 1, 2, and 3, taken in turn."
 
-    xl_test_data/
+    xl_testData/
         README.md                   # this file
-        treeData
-            binExample.1
-                node
+        treeData/
+            binExample.1/
+                node/
                     skPriv          # PEM serialization of private RSA key
                 dataDir/
                     data1
@@ -66,20 +66,21 @@ of values 1, 2, and 3, taken in turn."
                     subDir3/
                         data31
                     subDir4/
-                        subDir41
-                            subDir411
+                        subDir41/
+                            subDir411/
                                 data4111
-                sha{1,2,3}         # three subdirectories: sha1/,sha2/,sha3/
-                    example.nlh     # serialization of NLHTree
-                    example.bld     # serialized BuildList
-                    buildlist.hex   # BuildList.hash()
-                    example.merkle  # serialized merkletree
-                    merkle.hex      # returned by merkleize -x
-                    DIR{_FLAT,16x16,256x256}
-                        uDir/
-                            ...
-                            in/
-                            tmp/
+                derived/
+                    sha{1,2,3}/         # subdirectories: sha1/,sha2/,sha3/
+                        example.nlh     # serialization of NLHTree
+                        example.bld     # serialized BuildList
+                        buildlist.hex   # BuildList.hash()
+                        example.merkle  # serialized merkletree
+                        merkle.hex      # returned by merkleize -x
+                        DIR{_FLAT,16x16,256x256}/
+                            uDir/
+                                ...
+                                in/
+                                tmp/
 
 
 ### node
@@ -99,6 +100,14 @@ The information under `dataDir/` is a small directory tree.
 The `data*` are data files containing quasi-random data.  Both the
 file length and the contents are random.  `data12` is an empty file.
 Subdirectory `subDir2` is an empty subdirectory.
+
+Files below `node/` and `dataDir` are immutable in the sense that the
+utility used to generate this data, `bl_createtestdata`, will not 
+overwrite any of these files unless the `-f/--force` option is specified.
+Additional `dataDir` files may be added in future, however.
+
+On the other hand, the files below `derived` are regenerated during each 
+`bl_createtestdata1` run.
 
 ### sha subdirectories
 
@@ -154,11 +163,11 @@ content key.
 
 ## Project Status
 
-A skeletal repository as yet containing no test data.  It is organized as
-a Python project to ease project management.
+Includes test data as described above.  It is organized as a Python 
+project to ease project management.
 
 
 ## On-line Documentation
 
-More information on the **xl_test_data** project can be found
-[here](https://jddixon.github.io/xl_test_data)
+More information on the **xl_testData** project can be found
+[here](https://jddixon.github.io/xl_testData)
